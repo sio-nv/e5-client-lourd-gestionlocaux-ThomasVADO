@@ -129,7 +129,10 @@ public class InterventionsTableviewController implements Initializable {
                     //définition de la requête
 
 
-                    String sql = "SELECT I.date, I.heure, S.nom as nomSalle, P.nom AS nomIntervenant, prenom, telephone FROM interventions I join salles S on S.numeroSalle=numSalle join intervenants P on P.numeroInter = numIntervenant";
+                    String sql = "SELECT I.date, I.heure, motif, S.nom as nomSalle, P.nom " +
+                            "AS nomIntervenant, prenom, telephone FROM interventions I " +
+                            "join salles S on S.numeroSalle=numSalle " +
+                            "join intervenants P on P.numeroInter = numIntervenant";
                     System.out.println(this.getClass()+" - requête :"+sql);
                     //exécution de la requête
                     ResultSet rs = stmt.executeQuery(sql);
@@ -142,12 +145,13 @@ public class InterventionsTableviewController implements Initializable {
                     {
                         liste_des_interventions.add(new AffichageIntervention(new Salle(rs.getString("nomSalle")),
                                 new Intervenant(rs.getString("nomIntervenant"),rs.getString("prenom"),Integer.valueOf(rs.getString("telephone"))),
-                                new Intervention()
+                                new Intervention(rs.getString("motif"), rs.getDate("date"))
                         ));
                     }
                      //mise en correspondance de la colonne "salleCol" du tableview
                     //avec la propriété "nom" de la salle de la classe AffichageIntervention
                     salleCol_all.setCellValueFactory(cell->cell.getValue().getNomSalleProperty());
+
                     //mise en correspondance de la colonne "intervenantCol" du tableview
                     //avec la concaténation "prénom nom" de l'intervenant de la classe AffichageIntervention
                     intervenantCol_all.setCellValueFactory(cell->cell.getValue().getIntervenantProperty());
@@ -155,6 +159,11 @@ public class InterventionsTableviewController implements Initializable {
                     //mise en correspondance de la colonne "contactcol" du tableview
                     //avec la propriété "telephone" de l'intervention de la classe AffichageIntervention
                     contactCol_all.setCellValueFactory(cell->cell.getValue().getContactProperty());
+
+                    motifCol_all.setCellValueFactory(cell->cell.getValue().getMotifProperty());
+
+                    dateCol_all.setCellValueFactory(cell->cell.getValue().getDateProperty());
+
 
                     //création de la liste qui correspondra au contenu
                     //du tableview

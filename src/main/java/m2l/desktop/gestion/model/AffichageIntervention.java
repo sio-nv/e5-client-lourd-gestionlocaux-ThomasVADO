@@ -7,6 +7,7 @@ package m2l.desktop.gestion.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
@@ -32,8 +33,15 @@ public class AffichageIntervention {
     public SimpleStringProperty getIntervenantProperty() {
         return new SimpleStringProperty(intervenant.toString());
     }
+    //ZONE DE MODIFICATION
+    public SimpleStringProperty getMotifProperty() {
+        return new SimpleStringProperty(intervention.getMotif());
+    }
 
-
+    public SimpleStringProperty getDateProperty() {
+        return new SimpleStringProperty(intervention.getDate());
+    }
+    //ZONE DE MODIFICATION
     public SimpleIntegerProperty getContactProperty() {
         return new SimpleIntegerProperty(intervenant.getTelephone());
     }

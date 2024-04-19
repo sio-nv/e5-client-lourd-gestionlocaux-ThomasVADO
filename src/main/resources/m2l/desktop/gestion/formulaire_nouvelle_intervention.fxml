@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--SITUATION B : Mise en place l’onglet « Voir toutes les interventions ».-->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.*?>
 
+<VBox id="AnchorPane" prefHeight="400.0" prefWidth="600.0" spacing="30.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
-<VBox id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass"
-      xmlns:fx="http://javafx.com/fxml/1" spacing="30.0">
-<children>
-
-</children>
-<padding>
-<Insets top="30" right="20" bottom="30" left="40"/>
-</padding>
-
+   </children>
+   <padding>
+      <Insets bottom="30" left="40" right="20" top="30" />
+   </padding>
+      <HBox>
+         <Label prefHeight="30.0" prefWidth="79.0" text="Salle :" />
+         <TextField fx:id="salleTextField" prefHeight="26.0" prefWidth="127.0">
+            <VBox.margin>
+               <Insets left="100.0" />
+            </VBox.margin>
+         </TextField>
+      </HBox>
+      <HBox>
+         <Label prefHeight="30.0" prefWidth="79.0" text="Intervenant :" />
+         <TextField fx:id="intervenantTextField" prefHeight="26.0" prefWidth="127.0">
+            <VBox.margin>
+               <Insets left="100.0" />
+            </VBox.margin>
+         </TextField>
+      </HBox>
+   <HBox>
+      <Label prefHeight="30.0" prefWidth="79.0" text="Contact :" />
+      <TextField fx:id="contactTextField" prefHeight="26.0" prefWidth="127.0">
+         <VBox.margin>
+            <Insets left="100.0" />
+         </VBox.margin>
+      </TextField>
+   </HBox>
+   <HBox>
+      <Label prefHeight="30.0" prefWidth="79.0" text="Motif :" />
+      <TextField fx:id="motifTextField" prefHeight="26.0" prefWidth="127.0">
+         <VBox.margin>
+            <Insets left="100.0" />
+         </VBox.margin>
+      </TextField>
+   </HBox>
+   <HBox>
+      <Label prefHeight="30.0" prefWidth="79.0" text="Date :" />
+      <TextField fx:id="dateTextField" prefHeight="26.0" prefWidth="127.0">
+         <VBox.margin>
+            <Insets left="100.0" />
+         </VBox.margin>
+      </TextField>
+   </HBox>
+         <Button maxWidth="Infinity" prefWidth="420.0" text="Valider et enregistrer" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets left="200.0" right="200.0" />
+            </VBox.margin>
+         </Button>
 </VBox>
