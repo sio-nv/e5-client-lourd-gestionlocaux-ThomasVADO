@@ -121,26 +121,14 @@ public class InterventionsTableviewController implements Initializable {
 
                 try
                 {
-
                     System.out.println("Chargement des salles...");
-                    //création d'un "Statement" pour exécuter la requête
                     stmt = connexion.createStatement();
-
-                    //définition de la requête
-
-
                     String sql = "SELECT I.date, I.heure, motif, S.nom as nomSalle, P.nom " +
                             "AS nomIntervenant, prenom, telephone FROM interventions I " +
                             "join salles S on S.numeroSalle=numSalle " +
                             "join intervenants P on P.numeroInter = numIntervenant";
                     System.out.println(this.getClass()+" - requête :"+sql);
-                    //exécution de la requête
                     ResultSet rs = stmt.executeQuery(sql);
-
-
-                    //parcours des enregistrements résultats,
-                    //création de nouveaux objets "salle" et
-                    //ajout de cet objet dans la liste
                     while(rs.next())
                     {
                         liste_des_interventions.add(new AffichageIntervention(new Salle(rs.getString("nomSalle")),
@@ -148,42 +136,21 @@ public class InterventionsTableviewController implements Initializable {
                                 new Intervention(rs.getString("motif"), rs.getDate("date"))
                         ));
                     }
-                     //mise en correspondance de la colonne "salleCol" du tableview
-                    //avec la propriété "nom" de la salle de la classe AffichageIntervention
                     salleCol_all.setCellValueFactory(cell->cell.getValue().getNomSalleProperty());
-
-                    //mise en correspondance de la colonne "intervenantCol" du tableview
-                    //avec la concaténation "prénom nom" de l'intervenant de la classe AffichageIntervention
                     intervenantCol_all.setCellValueFactory(cell->cell.getValue().getIntervenantProperty());
-
-                    //mise en correspondance de la colonne "contactcol" du tableview
-                    //avec la propriété "telephone" de l'intervention de la classe AffichageIntervention
                     contactCol_all.setCellValueFactory(cell->cell.getValue().getContactProperty());
-
                     motifCol_all.setCellValueFactory(cell->cell.getValue().getMotifProperty());
-
                     dateCol_all.setCellValueFactory(cell->cell.getValue().getDateProperty());
-
-
-                    //création de la liste qui correspondra au contenu
-                    //du tableview
                     donnees_interventions_all=FXCollections.observableList(liste_des_interventions);
-                    //mise en correspondance de la liste "donneesIntJour"
-                    //avec le tableview "todayInt"
                     toutesInterventions.setItems(donnees_interventions_all);
-
-
                     rs.close();
                 }
                 catch(SQLException se)
                 {
-                    //exécuté si la requête ne s'est pas bien exécutée
                     se.printStackTrace();
                 }
                 finally
                 {
-
-
                     if(stmt!=null)
                     {
                         try

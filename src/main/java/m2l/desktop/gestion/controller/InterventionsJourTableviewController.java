@@ -105,11 +105,8 @@ public class InterventionsJourTableviewController implements Initializable{
                     //création d'un "Statement" pour exécuter la requête
                     stmt = connexion.createStatement();
                     String sql = "SELECT I.date, I.heure, motif, I.statut, S.nom as nomSalle, P.nom AS nomIntervenant, prenom, telephone " +
-                            "FROM interventions I " +
-                            "JOIN salles S ON S.numeroSalle = numSalle " +
-                            "JOIN intervenants P ON P.numeroInter = numIntervenant " +
-                            "WHERE I.date = CURDATE() " +
-                            "ORDER BY I.date ASC, I.heure ASC";
+                            "FROM interventions I JOIN salles S ON S.numeroSalle = numSalle JOIN intervenants P " +
+                            "ON P.numeroInter = numIntervenant WHERE I.date = CURDATE() ORDER BY I.date ASC, I.heure ASC";
                     System.out.println(this.getClass()+" - requête :"+sql);
                     //exécution de la requête
                     ResultSet rs = stmt.executeQuery(sql);
