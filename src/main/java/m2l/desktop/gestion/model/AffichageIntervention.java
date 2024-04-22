@@ -33,13 +33,17 @@ public class AffichageIntervention {
     public SimpleStringProperty getIntervenantProperty() {
         return new SimpleStringProperty(intervenant.toString());
     }
-    //ZONE DE MODIFICATION
+
     public SimpleStringProperty getMotifProperty() {
         return new SimpleStringProperty(intervention.getMotif());
     }
 
     public SimpleStringProperty getDateProperty() {
         return new SimpleStringProperty(intervention.getDate());
+    }
+    //ZONE DE MODIFICATION
+    public SimpleStringProperty getStatutProperty() {
+        return new SimpleStringProperty(intervention.getStatut());
     }
     //ZONE DE MODIFICATION
     public SimpleIntegerProperty getContactProperty() {

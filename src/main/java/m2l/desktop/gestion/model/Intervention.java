@@ -31,7 +31,9 @@ public class Intervention
     }
 
 
-    public Intervention( String motif, String statut,Date date) {
+
+
+    public Intervention(String motif, String statut, Date date) {
         this.date = date;
         this.motif = motif;
         this.statut = statut;
@@ -49,6 +51,12 @@ public class Intervention
 
     public String getMotif() {
         return motif;
+    }
+    public String getStatut() {
+        if (statut == null) {
+            return "Date non définie";
+        }
+        return statut;
     }
     public String getDate() {
         if (date == null) {

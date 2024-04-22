@@ -19,15 +19,16 @@
                 />
             </HBox>
 
-            <TableView fx:id="todayInt" layoutX="59.0" layoutY="55.0" prefHeight="600.0" prefWidth="200.0">
+            <TableView fx:id="interventionJour" layoutX="59.0" layoutY="55.0" prefHeight="600.0" prefWidth="200.0">
                 <columns>
-                    <TableColumn fx:id="salleCol" prefWidth="150" text="Salle"/>
-                    <TableColumn fx:id="intervenantCol" prefWidth="150.0" text="Intervenant"/>
-                    <TableColumn fx:id="contactCol" prefWidth="150" text="Contact intervenant"/>
-                    <TableColumn fx:id="motifCol" prefWidth="300" text="Motif intervention"/>
-                    <TableColumn fx:id="statutCol" prefWidth="300" text="Statut intervention"/>
+                    <TableColumn fx:id="salleCol_all" prefWidth="150" text="Salle"/>
+                    <TableColumn fx:id="intervenantCol_all" prefWidth="150" text="Intervenant"/>
+                    <TableColumn fx:id="contactCol_all" prefWidth="150" text="Contact"/>
+                    <TableColumn fx:id="motifCol_all" prefWidth="300" text="Motif"/>
+                    <TableColumn fx:id="statutCol_all" prefWidth="300" text="Statut"/>
                 </columns>
             </TableView>
+
         </VBox>
     </children>
 </VBox>

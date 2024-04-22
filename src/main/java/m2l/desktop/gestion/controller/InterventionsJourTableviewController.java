@@ -1,15 +1,15 @@
 package m2l.desktop.gestion.controller;
 
 import java.net.URL;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import m2l.desktop.gestion.model.AffichageIntervention;
+import m2l.desktop.gestion.model.Intervenant;
+import m2l.desktop.gestion.model.Intervention;
+import m2l.desktop.gestion.model.Salle;
 
 /**
  *
@@ -37,34 +40,11 @@ public class InterventionsJourTableviewController implements Initializable{
     private ObservableList<AffichageIntervention> donnees_interventions;
 
     /**
-     * récupération des éléments définis dans la vue (fxml)
-     */
-    @FXML
-    public TableView todayInt;
-
-    @FXML
-    public TableColumn<AffichageIntervention,String> salleCol;
-    @FXML
-    public TableColumn <AffichageIntervention,String>intervenantCol;
-    @FXML
-    public TableColumn <AffichageIntervention,Number>contactCol;
-    @FXML
-    public TableColumn <AffichageIntervention,String>motifCol;
-    //SITUATION A : Finalisation de l’affichage l’onglet « Interventions du jour ».
-    @FXML
-    public TableColumn <AffichageIntervention,String>statutCol;
-    //SITUATION A : Finalisation de l’affichage l’onglet « Interventions du jour ».
-    @FXML
-    public TableColumn <AffichageIntervention,String>dateCol;
-
-
-
-    /**
      * SITUATION B : Mise en place l’onglet « Voir toutes les interventions ».
      */
-    private ObservableList<AffichageIntervention> donnees_interventions_all;
+    private ObservableList<AffichageIntervention> donnees_interventions_jour_all;
     @FXML
-    public TableView toutesInterventions;
+    public TableView interventionJour;
 
     @FXML
     public TableColumn<AffichageIntervention,String> salleCol_all;
@@ -75,7 +55,7 @@ public class InterventionsJourTableviewController implements Initializable{
     @FXML
     public TableColumn <AffichageIntervention,String>motifCol_all;
     @FXML
-    public TableColumn <AffichageIntervention,String>dateCol_all;
+    public TableColumn <AffichageIntervention,String>statutCol_all;
     @FXML
     public Label dateJour;
 
@@ -121,16 +101,43 @@ public class InterventionsJourTableviewController implements Initializable{
 
                 try
                 {
-
                     System.out.println("Chargement des salles du jour...");
                     //création d'un "Statement" pour exécuter la requête
                     stmt = connexion.createStatement();
+                    String sql = "SELECT I.date, I.heure, motif, I.statut, S.nom as nomSalle, P.nom AS nomIntervenant, prenom, telephone " +
+                            "FROM interventions I " +
+                            "JOIN salles S ON S.numeroSalle = numSalle " +
+                            "JOIN intervenants P ON P.numeroInter = numIntervenant " +
+                            "WHERE I.date = CURDATE() " +
+                            "ORDER BY I.date ASC, I.heure ASC";
+                    System.out.println(this.getClass()+" - requête :"+sql);
+                    //exécution de la requête
+                    ResultSet rs = stmt.executeQuery(sql);
+                    //parcours des enregistrements résultats,
+                    //création de nouveaux objets "salle" et
+                    //ajout de cet objet dans la liste
+                    while(rs.next())
+                    {
+                        liste_des_interventions_du_jour.add(new AffichageIntervention(new Salle(rs.getString("nomSalle")),
+                                new Intervenant(rs.getString("nomIntervenant"),rs.getString("prenom"),Integer.valueOf(rs.getString("telephone"))),
+                                new Intervention(rs.getString("motif"), rs.getString("statut"))
+                        ));
+                    }
+                    salleCol_all.setCellValueFactory(cell->cell.getValue().getNomSalleProperty());
+                    intervenantCol_all.setCellValueFactory(cell->cell.getValue().getIntervenantProperty());
+                    contactCol_all.setCellValueFactory(cell->cell.getValue().getContactProperty());
+                    motifCol_all.setCellValueFactory(cell->cell.getValue().getMotifProperty());
+                    statutCol_all.setCellValueFactory(cell->cell.getValue().getStatutProperty());
+                    donnees_interventions_jour_all= FXCollections.observableList(liste_des_interventions_du_jour);
 
-               
+                    if (interventionJour == null) {
+                        System.out.println("TableView is null");
+                    } else {
+                        System.out.println("TableView is not null");
+                    }
+                    interventionJour.setItems(donnees_interventions_jour_all);
 
-
-
-
+                    rs.close();
                 }
                 catch(SQLException se)
                 {
