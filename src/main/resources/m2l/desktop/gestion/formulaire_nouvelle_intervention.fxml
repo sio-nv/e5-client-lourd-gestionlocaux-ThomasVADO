@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox id="AnchorPane" prefHeight="400.0" prefWidth="600.0" spacing="30.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="AnchorPane" prefHeight="497.0" prefWidth="600.0" spacing="30.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="m2l.desktop.gestion.controller.AjoutInterventionController">
    <children>
 
    </children>
@@ -15,47 +15,57 @@
    </padding>
       <HBox>
          <Label prefHeight="30.0" prefWidth="79.0" text="Salle :" />
-         <TextField fx:id="salleTextField" prefHeight="26.0" prefWidth="127.0">
-            <VBox.margin>
-               <Insets left="100.0" />
-            </VBox.margin>
-         </TextField>
+         <ComboBox fx:id="salleComboBox" prefHeight="26.0" prefWidth="215.0" promptText="Choisir une salle">
+         <HBox.margin>
+            <Insets left="150.0" />
+         </HBox.margin>
+      </ComboBox>
       </HBox>
       <HBox>
          <Label prefHeight="30.0" prefWidth="79.0" text="Intervenant :" />
-         <TextField fx:id="intervenantTextField" prefHeight="26.0" prefWidth="127.0">
-            <VBox.margin>
-               <Insets left="100.0" />
-            </VBox.margin>
-         </TextField>
+      <ComboBox fx:id="intervenantComboBox" prefWidth="210.0" promptText="Choisir un intervenant">
+         <HBox.margin>
+            <Insets left="150.0" />
+         </HBox.margin>
+      </ComboBox>
       </HBox>
    <HBox>
       <Label prefHeight="30.0" prefWidth="79.0" text="Contact :" />
-      <TextField fx:id="contactTextField" prefHeight="26.0" prefWidth="127.0">
+      <TextField fx:id="contactTextField" prefHeight="93.0" prefWidth="296.0">
          <VBox.margin>
             <Insets left="100.0" />
          </VBox.margin>
+         <HBox.margin>
+            <Insets left="150.0" />
+         </HBox.margin>
       </TextField>
    </HBox>
    <HBox>
       <Label prefHeight="30.0" prefWidth="79.0" text="Motif :" />
-      <TextField fx:id="motifTextField" prefHeight="26.0" prefWidth="127.0">
+      <TextField fx:id="motifTextField" prefHeight="98.0" prefWidth="296.0">
          <VBox.margin>
             <Insets left="100.0" />
          </VBox.margin>
+         <HBox.margin>
+            <Insets left="150.0" />
+         </HBox.margin>
       </TextField>
    </HBox>
    <HBox>
       <Label prefHeight="30.0" prefWidth="79.0" text="Date :" />
-      <TextField fx:id="dateTextField" prefHeight="26.0" prefWidth="127.0">
+      <DatePicker />
+      <TextField fx:id="dateTextField" prefHeight="82.0" prefWidth="296.0">
          <VBox.margin>
             <Insets left="100.0" />
          </VBox.margin>
+         <HBox.margin>
+            <Insets left="150.0" />
+         </HBox.margin>
       </TextField>
    </HBox>
-         <Button maxWidth="Infinity" prefWidth="420.0" text="Valider et enregistrer" VBox.vgrow="ALWAYS">
+         <Button maxWidth="Infinity" prefHeight="26.0" prefWidth="185.0" text="Valider et enregistrer">
             <VBox.margin>
-               <Insets left="200.0" right="200.0" />
+               <Insets left="150.0" right="150.0" />
             </VBox.margin>
          </Button>
 </VBox>

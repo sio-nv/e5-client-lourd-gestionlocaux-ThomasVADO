@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class Salle {
 
+    protected int num;
     protected String nom;
     protected int capacite;
     public Rectangle r;
@@ -35,22 +36,18 @@ public class Salle {
         this.batiment = b;
     }
 
-    /**
-     * Accesseur (getter) renvoie
-     * la valeur de type "chaîne"
-     * contenue dans l'attribut de
-     * type "SimpleStringProperty"
-     * @return : le nom de la salle
-     */
+    public Salle(int numSalle, String nomSalle) {
+        this.num = numSalle;
+        this.nom = nomSalle;
+    }
+
     public String getNom() {
         return nom;
     }
+    public int getNum() {
+        return num;
+    }
 
-    /**
-     * Mutateur (setter) modifie le nom
-     * de la salle
-     * @param nom : nom de la salle
-     */
     public void setNom(String nom) {
         this.nom=nom;
     }
@@ -63,4 +60,7 @@ public class Salle {
         this.capacite=capacite;
     }
 
+    public void setNomSalle(String nomSalle) {
+        this.nom=nomSalle;
+    }
 }
