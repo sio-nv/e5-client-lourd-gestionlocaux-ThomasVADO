@@ -1,0 +1,15 @@
+- Ajouter le contrôleur
+
+- Mettre en place "Model_Salle" (interaction avec la base)
+
+- Transformer les champs de saisie texte (Salle et Intervenant) en liste déroulante (alimenté par la BDD) (ComboBox?, Scene Builder)
+
+- Transformer le champ de saisie texte (date) en sélecteur de date (Date Picker).
+
+- Faire en sorte que le combobox soit alimenté pa BDD
+
+- Faire le nécessaire en termes de design
+
+- Créer le dossier "productions" (tâches, requetes SQL, code source)
+
+- Etablir un plan de tests
